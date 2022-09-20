@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,9 +20,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
   <style>
     body {
       font-family: 'Poppins', sans-serif;
+    }
+
+    #spinner {
+      display: none;
     }
   </style>
 </head>
@@ -46,7 +52,7 @@
           Enter your URL below to generate a QR code and download the image
         </p>
         <form id="generate-form" class="mt-4">
-          <input id="url" type="url" class="w-full border-2 border-gray-200 rounded-xl p-3 text-gray-dark mr-2 focus:outline-none mb-5" placeholder="Enter a URL">
+          <input id="url" type="url" class="w-full border-2 border-gray-200 rounded-xl p-3 text-gray-dark mr-2 focus:outline-none mb-5" placeholder="Enter a URL " required>
 
           <select name="size" id="size" class="w-full border-2 border-gray-200 rounded-xl p-3 text-gray-dark mr-2 focus:outline-none">
             <option value="100">100x100</option>
@@ -69,6 +75,17 @@
         <img src="img/qr.svg" alt="" class="w-1/2 m-auto mb-10 md:w-full">
       </div>
     </div>
+    <!-- QR Code -->
+    <div id="generated" class="max-w-5xl m-auto flex flex-col text-center align-center justify-center mt-20">
+      <!-- Loader -->
+      <div class="m-auto" id="spinner" role="status">
+        <img src="img/spinner.svg" alt="">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <!-- Output -->
+      <div id="qrcode" class="m-auto"></div>
+    </div>
   </main>
+  <script src="js/script.js"></script>
 </body>
 </html>
